@@ -1,0 +1,143 @@
+
+1、html5新特性：
+   a.用于绘画的canvas元素。
+   b.用于媒介回放的video和audio元素。
+   c.对本地离线存储的更好的支持。
+   d.新的特殊内容的元素，比如article、footer、header、nav、section
+   e.新的表单控件，比如calendar、date、time、email、url、search
+2、8个新的语义元素：header、section、footer、aside、nav、main、article、figure。
+为了让旧版本的浏览器正确显示这些元素，设置css的display属性值为block。
+header，section，footer，aside，nav，main，article，figure { display: block; }
+1.header：
+通常包含h1-h6元素或hgroup，作为整个页面或者一个内容块的标题。也可以包裹一节的目录部分，一个搜索框，一个nav，或者任何相关logo。
+1、可以是“网页”或任意“section”的头部部分；
+2、没有个数的限制。
+3、如果hgroup或h1-h6自己就能工作得很好，那就不要用header。
+<hgroup>用于对网页或区段的标题进行组合。
+2.footer元素
+"网页"或"section"的页脚，通常含有该节的一些基本信息，如：作者，相关文档链接，版权资料。如果footer元素包含整个节，那么它们就代表附录，索引，提拔，许可协议，标签，类别等一些其他类似信息。
+<footer>
+       copyright@小贝
+</footer>
+footer使用注意：
+可以是网页或任意section的底部部分；
+没有个数限制，除了包裹的内容不一样，其他跟header类似。
+3.hgroup元素
+hgroup元素代表网页或section的标题，当元素有多个层级时，该元素可以将h1-h6元素放在其内，如文章的主标题和副标题的组合。
+<hgroup>
+          <h1></h1>
+          <h2></h2>
+</hgroup>
+hgroup使用注意：
+如果只需要一个h1-h6标签就不用hgroup;
+如果有连续多个h1-h6标签就用hgroup;
+如果有连续多个标签和其他文章数据，h1-h6标签就用hgroup包住，和其他文章元数据一起放入header标签。
+4.nav元素
+nav元素代表页面的导航链接区域。用于定义页面的主要导航部分。
+<nav>
+    <ul>
+       <li>
+       </li>
+    </ul>
+</nav>
+nav使用注意：
+用在整个页面主要导航部分上，不合适就不要用nav元素；
+5.aside元素
+aside元素被包含在article元素中作为主要内容的附属信息部分，其中的内容可以是与当前文章有关的相关资料、标签、名词解释。
+
+在article元素之外使用作为页面或站点全局的附属信息部分。最典型的是侧边栏，其中的内容可以是日志串连，其他组的导航，甚至广告，这些内容相关的页面。
+<article>
+    <p>内容</p>
+    <aside>
+        <h1>作者简介</h1>
+        <p>小北，前端一枚</p>
+    </aside></article>
+aside使用总结：
+aside在article内表示主要内容的附属信息；
+在article之外则可做侧边栏，没有article与之对应，最好不用。
+如果是广告，其他日志链接或者其他分类导航也可以用。
+
+6、section元素
+section元素代表文档中的节或段，段可以指一篇文章里按照主题的分段；节可以是指一个页面里的分组。
+
+3、为html添加自定义标签。
+<style>
+myElement {
+          color: red;
+     }
+</style>
+<script>
+document.createElement("myElement");
+</script>
+<myElement>你好的好东东黄飞鸿</myElement>
+4、ie8及更早的ie版本的浏览器不支持以上的方式，html5shiv。
+5、canvas
+找到<canvas>元素：
+var canvas = document.getElementById("myCanvas");
+检验getContext()方法是否存在：if (canvas.getContext) {}
+创建context对象：
+var context = canvas.getContext("2d");
+
+填充：fillStyle fillRect 描边：strokeStyle strokeRect 配套使用
+绘制一个矩形：
+context.fillStyle = "red";
+设置fillStyle属性可以是CSS颜色，渐变，或图案。fillStyle 默认设置是#000000（黑色）。
+context.fillRect(0,0,150,75);
+fillRect(x,y,width,height) 方法定义了矩形当前的填充方式。 
+clearRect()：清除画布上的矩形区域
+Canvas-路径：
+1、moveTo(x, y)：定义线条开始的位置
+2、lineTo(x, y)：定义线条结束坐标
+stroke():笔画 绘制
+
+判断在路径关闭之前确定画布上的某一点是否位于路径上：
+if (context.isPointInPath(100, 100)) {} 
+线：context.moveTo(0, 0);
+     context.lineTo(100,300);
+     context.stroke();
+圆形：context.beginPath();
+     context.arc(50, 50, 20, 0, 2*Math.PI);
+     context.stroke();
+Canvas-文本： 
+1、font-定义字体
+     textAlign-表示文本对齐方式（start,end,left,right,center）
+     textBaseline-表示文本的基线（top,hanging,middle,bottom）
+2、fillText(text, x, y)：实心
+3、strokeText(test, x, y)：空心
+
+绘制一个高20px的实心文字：
+context.font = "20px Arial";
+context.fillText("hello", 10, 350);
+绘制一个高20px的空心文字： 
+context.font = "20px Arial"; context.strokeText("hello", 10, 350);
+
+Canvas -阴影：
+1、shadowColor:用css颜色格式表示的阴影颜色，默认为黑色。
+2、shadowOffsetX:形状或路径x轴方向的阴影偏移量，默认为0。
+3、shadowOffsetY:形状或路径y轴方向的阴影偏移量，默认为0。
+4、shadowBlur：模糊的像素数，默认0，即不模糊。
+
+Canvas - 渐变：
+gradient:倾斜度
+1、createLinearGradient(x, y, x1, y1)：创建线条渐变
+x : 开始渐变横坐标 
+y : 开始渐变纵坐标
+x1 : 结束渐变横坐标
+x2 : 结束渐变纵坐标
+addColorStop() : 指定颜色停止，参数使用坐标来描述，可以是0至1。
+创建一个矩形渐变：
+var grd = context.createLinearGradient(0, 0, 200, 0);
+     grd.addColorStop(0, "red");
+     grd.addColorStop(1, "white");
+
+     context.fillStyle = grd;
+     context.fillRect(10, 100, 250, 180);
+2、createRadialGradient(x, y, r, x1, y1, r1): 创建一个圆渐变。
+创建一个圆渐变：
+var grd = context.createRadialGradient(75, 50, 5, 75, 50, 100);
+     grd.addColorStop(0, "red");
+     grd.addColorStop(1, "white");
+
+     context.fillStyle = grd;
+     context.fillRect(10, 10, 150, 80);
+
