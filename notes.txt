@@ -1,5 +1,6 @@
 
 1、html5新特性：
+   
    a.用于绘画的canvas元素。
    b.用于媒介回放的video和audio元素。
    c.对本地离线存储的更好的支持。
@@ -140,4 +141,92 @@ var grd = context.createRadialGradient(75, 50, 5, 75, 50, 100);
 
      context.fillStyle = grd;
      context.fillRect(10, 10, 150, 80);
+
+6、拖放
+拖放事件流程：
+1、拖动某元素时，将依次触发：1）dragstart：按下鼠标键并开始移动鼠标，被拖动元素触发dragstart。
+                                                2）drag：随即触发drag事件，拖动期间持续触发。
+                                                3）dragend：拖动停止时触发。（无论目标元素有否有效）
+2、当某元素被拖动到有效的放置目标上时，发生：1）dragenter：只要被拖动到目标范围内触发。
+                                                                          2）dragover：随即触发dragover，在目标范围内持续触发。
+                                                                          3）dragleave：被拖出目标范围内触发。（不松手）
+                                                                          4）drop：放到放置目标中触发。（松手）
+3、放置事件默认行为：打开被放到放置目标的url。
+阻止默认行为：preventDefault()；
+4、dataTransfer对象：用于从被拖动元素向放置目标传递字符串格式的数据。
+dataTransfer：
+getData()：只有一个参数：setData()的第一个参数。一个字符串，保存数据类型"Text"或“URL”
+setDate()：
+浏览器兼容：URL：两个值 文本数据：Text
+var dataTransfer = event.dataTransfer;
+var url = dataTransfer.getData("url") || dataTransfer.getData("text/uri-list");
+var text = dataTransfer.getData("Text");
+
+5、默认情况下，图像、链接和文本是可以拖动的，也就是说，不用编码就可移动，文本在被选中可拖动，图像和链接随时可拖动。
+其他元素通过设置draggable="true"使其可拖动。
+
+6、自定义放置目标：把任何元素变成有效的放置目标，方法是阻止dragover的默认行为：
+drag.ondragover = function() {
+          event.preventDefault();
+     };
+7、dropEffect：设置或获取拖拽操作的类型和要显示的光标类型。（必须要在ondragenter事件设置）
+effectAllowed：设置光标样式。（必须要在ondragstar事件设置）
+
+拖动事件的冒泡用法：
+<div id="drag">
+<div style="width: 150px; height: 150px;border: 1px solid #000">
+<div style="width: 50px; height: 50px; background-color:red" id="drag1" draggable="true"></div>
+</div>
+
+<div style="width: 150px; height: 150px;border: 1px solid #000">
+</div>
+<script>
+     var drag = document.getElementById("drag"),
+          drag1 = document.getElementById("drag1");
+
+     drag1.ondragstart = function() {
+          event.dataTransfer.setData("Text", drag1.id);
+     };
+     drag.ondrop = function() {
+          event.preventDefault();
+          var data = event.dataTransfer.getData("Text");
+          event.target.appendChild(document.getElementById(data));
+     };
+     drag.ondragover = function() {
+          event.preventDefault();
+     };
+</script>
+
+7、Geolocation（地理定位）
+1.检测是否支持地理定位 if (navigator.geolocation){}
+2.运行 navigator.geolocation.getCurrentPosition(showPosition, showError);
+showPosition:成功函数
+function showPosition(position)
+  {
+  x.innerHTML="纬度: " + position.coords.latitude +
+  "<br>经度: " + position.coords.longitude;    
+  }
+showError：失败函数
+function showError(error)
+  {
+  switch(error.code)
+    {
+    case error.PERMISSION_DENIED:
+      x.innerHTML="用户拒绝对获取地理位置的请求。"
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML="位置信息是不可用的。"
+      break;
+    case error.TIMEOUT:
+      x.innerHTML="请求用户地理位置超时。"
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML="未知错误。"
+      break;
+    }
+  }
+
+
+
+
 
