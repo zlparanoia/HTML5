@@ -225,6 +225,74 @@ function showError(error)
       break;
     }
   }
+8、input类型
+1.color：选取颜色
+<input type="color">
+2、date:日期（年月日）
+<input type="date">
+3、datetime-local：一个日期和时间
+<input type="datetime-local">
+4、email：email地址输入域，提交自动验证地址是否合法有效。
+<form action="">
+     <input type="email">
+     <input type="submit">
+</form>
+5、month：选择一个月份（年月）
+<input type="month">
+6、number：数值的输入域
+<input type="number" min="1" max="15" step="2" value="2">
+max：规定允许的最大值
+min：规定允许的最小值
+step：规定合法的数字间隔
+value：规定的默认值
+7、range：一定范围内的数字值的输入域，显示为滚动条。
+<input type="range" min="1" max="50" step="5" value="4">
+参数与number类似。
+8、search：用于搜索域，比如站点搜索或Google搜索。
+<input type="search">
+9：tel：电话号码
+10、time：选择一个时间
+<input type="time">
+11、url：用于应该包含URL地址的输入域
+<form action="">
+     <input type="url">
+     <input type="submit">
+</form>
+提交自动验证url域的值。
+12、week：选择年和第几周
+<input type="week">
+9、表单元素
+1、<datalist>规定输入域的选项列表。
+     <datalist>属性规定form或input域应该拥有自动完成的功能。
+<input>元素与<datalist>绑定，input的list值与datalist的id值相同。
+2、keygen元素：用于表单的密钥对生成器字段。
+当生成表单时，生成两个键，一个私钥，一个公玥，私钥存储于客户端，公玥则被送到服务器。
+<form action="">
+用户名:<input type="text" name="username">
+     <keygen name="security">
+     <input type="submit">
+</form>
+10、表单新增功能
+1、form/input autocomplete：自动完成功能
+form:
+2、form novalidate：无需验证，boolean值
+<form action="" autocomplete="on" novalidate>
+     <input type="email" autocomplete="off">
+     <input type="submit">
+</form>
+3、autofocus:boolean：页面加载时自动获得焦点。
+input:
+1、form属性：输入域所属一个或多个表单
+2、formenctype属性：
+formenctype 属性描述了表单提交到服务器的数据编码 (只对form表单中 method="post" 表单)
+3、formaction属性：覆盖action，提交url地址
+4、list:规定输入域的datalist。
+5、min和max step
+6、multiple可选择多个值 email file
+7、pattern:验证正则：Country code: <input type="text" name="country_code" pattern="[A-Za-z]{3}" title="Three letter country code">
+8、placeholder：输入框提示
+9、required：boolean，规定必须在提交之前填写输入域（不能为空）
+
 
 
 

@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div>
-	<canvas id="canvas" width="500" height="400" style="border: 1px solid #000" />
+		<canvas id="canvas" width="500" height="400" style="border: 1px solid #000" />
 	</div>
 
 	<div id="drag" class="box">
@@ -16,6 +16,49 @@
 		</div>
 		<div class="box2"></div>
 	</div>
+
+	<input type="color"><br/>
+	<input type="date"><br/>
+	<input type="datetime-local"><br/>
+	<form action="">
+		<input type="email">
+		<input type="submit">
+	</form>
+	<input type="month"><br/>
+	<input type="number" min="1" max="15" step="2" value="2"><br/>
+	<input type="range" min="1" max="50" step="5" value="4"><br/>
+	<input type="search"><br/>
+	<input type="tel"><br/>
+	<input type="time"><br/>
+	<form action="">
+		<input type="url">
+		<input type="submit">
+	</form>
+	<input type="week"><br/>
+
+	<input list="browsers"><br/>
+
+	<datalist id="browsers">
+		<option value="Internet Explorer"></option>
+		<option value="Opare"></option>
+	</datalist>
+
+	<form action="">
+	用户名:<input type="text" name="username">
+		<keygen name="security">
+		<input type="submit">
+	</form>
+
+	<form action="" onchange="x.value = parseInt(a.value) + parseInt(b.value)">0
+	<input type="range" id="a" value="50">100 + 
+	<input type="number" id="b" value="50">=
+	<output name="x" for="a b"></output>
+	</form>
+
+	<form action="" autocomplete="on" novalidate>
+		<input type="email" autocomplete="off">
+		<input type="submit">
+	</form>
 
 	<script src="js/canvas.js"></script>
 	<script src="js/html5.js"></script>
